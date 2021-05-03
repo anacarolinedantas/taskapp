@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>TaskApp</title>
+</h:head>
+<h:body>
+	<div id="header" class="center">
+		<h:graphicImage id="logo" library="images" name="TaskApp.png" />
+	</div>
+	
+	<!-- FORMULARIO -->
+	<div class="formulario center">
+		<h:form id="form">
+			<h:panelGrid>
+				<p:outputLabel value="Título:" />
+				<p:inputText value="#{tarefaBean.tarefa.titulo}" />
+
+				<p:outputLabel value="Descrição:" />
+				<p:inputTextarea rows="5" cols="60"
+					value="#{tarefaBean.tarefa.descricao}" />
+
+				<p:outputLabel value="Responsável:" />
+				<p:selectOneMenu value="#{tarefaBean.tarefa.responsavel}"
+					hideNoSelectionOption="true">
+					<f:selectItem itemValue="#{null}" itemLabel="Selecione..." />
+					<f:selectItem itemValue="Ana" itemLabel="Ana" />
+					<f:selectItem itemValue="Antônio" itemLabel="Antônio" />
+					<f:selectItem itemValue="João" itemLabel="João" />
+					<f:selectItem itemValue="Maria" itemLabel="Maria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Prioridade:" />
+				<p:selectOneMenu value="#{tarefaBean.tarefa.prioridade}"
+					hideNoSelectionOption="true">
+					<f:selectItem itemValue="#{null}" itemLabel="Selecione..." />
+					<f:selectItem itemValue="Alta" itemLabel="Alta" />
+					<f:selectItem itemValue="Média" itemLabel="Média" />
+					<f:selectItem itemValue="Baixa" itemLabel="Baixa" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Deadline:" />
+				<p:inputText value="#{tarefaBean.tarefa.deadline}" type="date" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="center">
+				<p:commandButton id="btn-enviar" value="Cadastrar"
+					action="#{tarefaBean.adicionarTarefa}" update="form table" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+	
+	<!-- TABELA -->
+	<h:panelGroup styleClass="center">
+		<h:form id="table">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable var="t" value="#{tarefaBean.tarefas}" widgetVar="tarefasTable"
+				 		 editable="true">
+
+				<f:facet name="header">
+					<div class="p-d-flex p-jc-end">
+						<p:inputText id="globalFilter" style="width:300px"
+							onkeyup="PF('tarefasTable').filter()"
+							placeholder="Pesquisar todos os campos" />
+					</div>
+				</f:facet>
+
+				<p:column style="width:2rem">
+					<p:rowToggler />
+				</p:column>
+
+				<p:column headerText="Título" filterBy="#{t.titulo}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{t.titulo}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="modelInput" value="#{t.titulo}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Responsável" filterBy="#{t.responsavel}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{t.responsavel}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{t.responsavel}">
+								<f:selectItem itemValue="Ana" itemLabel="Ana" />
+								<f:selectItem itemValue="Antônio" itemLabel="Antônio" />
+								<f:selectItem itemValue="João" itemLabel="João" />
+								<f:selectItem itemValue="Maria" itemLabel="Maria" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Prioridade" filterBy="#{t.prioridade}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{t.prioridade}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{t.prioridade}">
+								<f:selectItem itemValue="Alta" itemLabel="Alta" />
+								<f:selectItem itemValue="Média" itemLabel="Média" />
+								<f:selectItem itemValue="Baixa" itemLabel="Baixa" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Deadline" filterBy="#{t.deadline}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{t.deadline}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{t.deadline}" style="width:100%"
+								label="Deadline" type="date" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Situação" filterBy="#{t.status}">
+					<h:outputText value="#{t.status}" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:rowEditor editTitle="Editar" cancelTitle="Cancelar Edição"
+						saveTitle="Salvar Edição" />
+					<p:commandLink action="#{tarefaBean.excluirTarefa(t)}"
+						update="form table" value="Excluir"/> | 
+			 		<p:commandLink action="#{tarefaBean.concluirTarefa(t)}"
+						update="form table" value="Concluir" />
+				</p:column>
+
+				<p:rowExpansion>
+					<div class="product">
+						<div class="product-list-item">
+							<div class="product-list-detail">
+								<p:outputLabel value="Descrição:" />
+								<span class="product-description">#{t.descricao}</span>
+							</div>
+						</div>
+					</div>
+				</p:rowExpansion>
+				
+			</p:dataTable>
+		</h:form>
+	</h:panelGroup>
+</h:body>
+
+</html>
