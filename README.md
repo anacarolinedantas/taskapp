@@ -7,13 +7,13 @@
 ###  Cadastro de Tarefas
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  	<img alt="Cadastro" src="/.github/screenshots/cadastro.jpeg" width="100%">
+  	<img alt="Cadastro" src="/.github/screenshots/cadastro.jpg" width="100%">
 </p>
 
 ###  Lista de Tarefas
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  	<img alt="Lista de Tarefas" src="/.github/screenshots/lista_de_tarefas.jpeg" width="100%">
+  	<img alt="Lista de Tarefas" src="/.github/screenshots/lista_de_tarefas.jpg" width="100%">
 </p>
 
 ---
