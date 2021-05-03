@@ -1,5 +1,3 @@
-# TaskApp
-
 <h1 align="center">
     <img alt="TaskApp" title="Happy" src="/.github/screenshots/TaskApp.png" />
 </h1>
