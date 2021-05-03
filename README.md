@@ -49,6 +49,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
-- [Java](https://www.java.com/pt-BR/)
+- [JavaServer Faces (JSF)]()
 - [Tomcat](https://tomcat.apache.org/)
 - [Prime Faces](https://www.primefaces.org/)
