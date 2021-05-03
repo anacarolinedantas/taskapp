@@ -20,7 +20,7 @@
 
 ## 💻 Sobre o projeto
 
-TaskApp é um gerenciador de tarefas que permite organizar suas atividades, onde é possível definir prioridades e acompanhar o status de cada uma dessas atividades (Concluída ou em Andamento). Além disso o TaskApp possui as seguintes funcionalidades: criar, atualizar e remover uma tarefa.
+TaskApp é um gerenciador de tarefas que permite organizar suas atividades, onde é possível definir prioridades e acompanhar o status de cada uma dessas atividades (Concluída ou em Andamento). Além disso o TaskApp possui as seguintes funcionalidades: criar, atualizar, remover e alterar status. Você também pode filtrar uma tarefa no campo geral de pesquisa ou filtrar por cada campo específico.
 
 ## 🧭 Como executar o projeto
 
